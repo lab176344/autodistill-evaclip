@@ -2,7 +2,7 @@
 
 This repository contains the code supporting the CLIP base model for use with [Autodistill](https://github.com/autodistill/autodistill).
 
-[EvaCLIP](https://github.com/baaivision/EVA/tree/master/EVA-CLIP),  is a computer vision model trained using pairs of images and text.
+[EvaCLIP](https://github.com/baaivision/EVA/tree/master/EVA-CLIP),  is a computer vision model trained using pairs of images and text. It can be used for classification of images
 
 Read the full [Autodistill documentation](https://autodistill.github.io/autodistill/).
 
