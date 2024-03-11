@@ -19,6 +19,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/lakshmanmoiiai/autodistill-evaclip",
     install_requires=[
+        "setuptools",
         "torch",
         "supervision",
         "numpy",
