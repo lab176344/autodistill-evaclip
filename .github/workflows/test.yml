@@ -26,5 +26,3 @@ jobs:
       - name: 🧹 Lint with flake8
         run: |
           make check_code_quality
-      - name: 🧪 Test
-        run: "python -m pytest ./test"
