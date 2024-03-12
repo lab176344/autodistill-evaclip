@@ -28,6 +28,7 @@ setuptools.setup(
         "ultralytics",
         "autodistill",
         "roboflow",
+        "transformers",
     ],
     packages=find_packages(exclude=("tests",)),
     extras_require={
