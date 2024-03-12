@@ -43,7 +43,6 @@ print(results)
 
 base_model.label("./context_images", extension=".jpeg")
 ```
-
 ## License
 
 The code in this repository is licensed under an [MIT license](LICENSE.md).
