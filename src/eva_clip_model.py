@@ -2,12 +2,16 @@ import os
 from dataclasses import dataclass
 from typing import Union
 
+
 import numpy as np
 import supervision as sv
 import torch
 from autodistill.classification import ClassificationBaseModel
 from autodistill.core.embedding_model import EmbeddingModel
-from autodistill.core.embedding_ontology import EmbeddingOntology, compare_embeddings  # noqa: E501
+from autodistill.core.embedding_ontology import (
+    EmbeddingOntology,
+    compare_embeddings,
+)  # noqa: E501
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
 from transformers import AutoModel
@@ -25,12 +29,16 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
         self.ontology = ontology
         model_name_or_path = "BAAI/EVA-CLIP-8B"
         preprocess = CLIPImageProcessor.from_pretrained(
-            "openai/clip-vit-large-patch14", device=DEVICE)
+            "openai/clip-vit-large-patch14", device=DEVICE
+        )
 
-        self.clip_model = AutoModel.from_pretrained(
-            model_name_or_path,
-            torch_dtype=torch.float16,
-            trust_remote_code=True).to('cuda').eval()
+        self.clip_model = (
+            AutoModel.from_pretrained(
+                model_name_or_path, torch_dtype=torch.float16, trust_remote_code=True
+            )
+            .to("cuda")
+            .eval()
+        )
         self.clip_preprocess = preprocess
         self.tokenize = CLIPTokenizer.from_pretrained(model_name_or_path)
 
@@ -52,8 +60,7 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
 
     def embed_text(self, input: str) -> np.ndarray:
         return (
-            self.clip_model.encode_text(
-                self.tokenize([input]).to(DEVICE)).cpu().numpy()
+            self.clip_model.encode_text(self.tokenize([input]).to(DEVICE)).cpu().numpy()
         )
 
     def predict(self, input: str) -> sv.Classifications:
@@ -65,8 +72,7 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
                 image_features = self.clip_model.encode_image(image)
 
                 return compare_embeddings(
-                    image_features.cpu().numpy(),
-                    self.ontology.embeddingMap.values()
+                    image_features.cpu().numpy(), self.ontology.embeddingMap.values()
                 )
         else:
             labels = self.ontology.prompts()
