@@ -10,14 +10,14 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="autodistill_yolo_world",
+    name="autodistill_eva_clip",
     version=version,
     author="Lakshman",
     author_email="lakshman@moiiai.com",
-    description="Yolo-World module for use with Autodistill",
+    description="EvaClip module for use with Autodistill",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/lakshmanmoiiai/autodistill-yolo-world",
+    url="https://github.com/lab176344/autodistill-evaclip/",
     install_requires=[
         "torch",
         "supervision",
