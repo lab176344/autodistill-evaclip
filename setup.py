@@ -10,20 +10,19 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="autodistill_eva_clip",
+    name="autodistill_yolo_world",
     version=version,
     author="Lakshman",
     author_email="lakshman@moiiai.com",
-    description="Eva-CLIP module for use with Autodistill",
+    description="Yolo-World module for use with Autodistill",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/lakshmanmoiiai/autodistill-evaclip",
+    url="https://github.com/lakshmanmoiiai/autodistill-yolo-world",
     install_requires=[
-        "setuptools",
         "torch",
         "supervision",
         "numpy",
-        "transformers",
+        "ultralytics",
         "autodistill",
         "roboflow",
     ],
