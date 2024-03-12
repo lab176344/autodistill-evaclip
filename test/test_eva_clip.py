@@ -1,5 +1,6 @@
-from src.eva_clip_model import EvaCLIP
 from autodistill.detection import CaptionOntology
+
+from src.eva_clip_model import EvaCLIP
 
 
 def test_eval_clip_classification():

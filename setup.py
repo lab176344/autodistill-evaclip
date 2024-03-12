@@ -1,5 +1,8 @@
-from setuptools import find_packages
 import re
+
+import setuptools
+from setuptools import find_packages
+
 with open("./src/__init__.py", "r") as f:
     content = f.read()
     # from https://www.py4u.net/discuss/139845
@@ -14,21 +17,27 @@ setuptools.setup(
     version=version,
     author="Lakshman",
     author_email="lakshman@moiiai.com",
-    description="Eva-CLIP module for use with Autodistill",
+    description="EvaClip module for use with Autodistill",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/lakshmanmoiiai/autodistill-evaclip",
+    url="https://github.com/lab176344/autodistill-evaclip/",
     install_requires=[
         "torch",
         "supervision",
         "numpy",
-        "transformers",
+        "ultralytics",
         "autodistill",
         "roboflow",
+        "transformers",
     ],
     packages=find_packages(exclude=("tests",)),
     extras_require={
-        "dev": ["flake8", "black==22.3.0", "isort", "twine", "pytest", "wheel"],
+        "dev": ["flake8",
+                "black==22.3.0",
+                "isort",
+                "twine",
+                "pytest",
+                "wheel"],
     },
     classifiers=[
         "Programming Language :: Python :: 3",

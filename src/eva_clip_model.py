@@ -1,4 +1,3 @@
-from PIL import Image
 import os
 from dataclasses import dataclass
 from typing import Union
@@ -8,15 +7,14 @@ import supervision as sv
 import torch
 from autodistill.classification import ClassificationBaseModel
 from autodistill.core.embedding_model import EmbeddingModel
-from autodistill.core.embedding_ontology import EmbeddingOntology, compare_embeddings
+from autodistill.core.embedding_ontology import (  # noqa: E501
+    EmbeddingOntology,
+    compare_embeddings,
+)
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
-from PIL import Image
-from transformers import AutoModel, AutoConfig
-from transformers import CLIPImageProcessor, pipeline, CLIPTokenizer
-import torch
-import torchvision.transforms as T
-from torchvision.transforms import InterpolationMode
+from transformers import AutoModel, CLIPImageProcessor, CLIPTokenizer
+
 HOME = os.path.expanduser("~")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -29,12 +27,16 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
         self.ontology = ontology
         model_name_or_path = "BAAI/EVA-CLIP-8B"
         preprocess = CLIPImageProcessor.from_pretrained(
-            "openai/clip-vit-large-patch14", device=DEVICE)
+            "openai/clip-vit-large-patch14", device=DEVICE
+        )
 
-        self.clip_model = AutoModel.from_pretrained(
-            model_name_or_path,
-            torch_dtype=torch.float16,
-            trust_remote_code=True).to('cuda').eval()
+        self.clip_model = (
+            AutoModel.from_pretrained(
+                model_name_or_path, torch_dtype=torch.float16, trust_remote_code=True
+            )
+            .to("cuda")
+            .eval()
+        )
         self.clip_preprocess = preprocess
         self.tokenize = CLIPTokenizer.from_pretrained(model_name_or_path)
 
@@ -56,8 +58,7 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
 
     def embed_text(self, input: str) -> np.ndarray:
         return (
-            self.clip_model.encode_text(
-                self.tokenize([input]).to(DEVICE)).cpu().numpy()
+            self.clip_model.encode_text(self.tokenize([input]).to(DEVICE)).cpu().numpy()
         )
 
     def predict(self, input: str) -> sv.Classifications:
