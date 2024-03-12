@@ -8,7 +8,9 @@ import torch
 from autodistill.classification import ClassificationBaseModel
 from autodistill.core.embedding_model import EmbeddingModel
 from autodistill.core.embedding_ontology import (  # noqa: E501
-    EmbeddingOntology, compare_embeddings)
+    EmbeddingOntology,
+    compare_embeddings,
+)
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
 from transformers import AutoModel, CLIPImageProcessor, CLIPTokenizer
