@@ -26,3 +26,4 @@ jobs:
       - name: 🧹 Lint with flake8
         run: |
           make check_code_quality
+    
