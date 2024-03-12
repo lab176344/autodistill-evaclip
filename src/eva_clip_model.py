@@ -2,20 +2,16 @@ import os
 from dataclasses import dataclass
 from typing import Union
 
-
 import numpy as np
 import supervision as sv
 import torch
 from autodistill.classification import ClassificationBaseModel
 from autodistill.core.embedding_model import EmbeddingModel
-from autodistill.core.embedding_ontology import (
-    EmbeddingOntology,
-    compare_embeddings,
-)  # noqa: E501
+from autodistill.core.embedding_ontology import (  # noqa: E501
+    EmbeddingOntology, compare_embeddings)
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
-from transformers import AutoModel
-from transformers import CLIPImageProcessor, CLIPTokenizer
+from transformers import AutoModel, CLIPImageProcessor, CLIPTokenizer
 
 HOME = os.path.expanduser("~")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")

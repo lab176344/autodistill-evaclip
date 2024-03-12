@@ -1,6 +1,7 @@
-from setuptools import find_packages
 import re
+
 import setuptools
+from setuptools import find_packages
 
 with open("./src/__init__.py", "r") as f:
     content = f.read()
