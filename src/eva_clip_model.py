@@ -7,7 +7,7 @@ import supervision as sv
 import torch
 from autodistill.classification import ClassificationBaseModel
 from autodistill.core.embedding_model import EmbeddingModel
-from autodistill.core.embedding_ontology import EmbeddingOntology, compare_embeddings
+from autodistill.core.embedding_ontology import EmbeddingOntology, compare_embeddings  # noqa: E501
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
 from transformers import AutoModel
@@ -65,7 +65,8 @@ class EvaCLIP(ClassificationBaseModel, EmbeddingModel):
                 image_features = self.clip_model.encode_image(image)
 
                 return compare_embeddings(
-                    image_features.cpu().numpy(), self.ontology.embeddingMap.values()
+                    image_features.cpu().numpy(),
+                    self.ontology.embeddingMap.values()
                 )
         else:
             labels = self.ontology.prompts()
