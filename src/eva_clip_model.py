@@ -1,4 +1,3 @@
-from PIL import Image
 import os
 from dataclasses import dataclass
 from typing import Union
@@ -11,12 +10,9 @@ from autodistill.core.embedding_model import EmbeddingModel
 from autodistill.core.embedding_ontology import EmbeddingOntology, compare_embeddings
 from autodistill.detection import CaptionOntology
 from autodistill.helpers import load_image
-from PIL import Image
-from transformers import AutoModel, AutoConfig
-from transformers import CLIPImageProcessor, pipeline, CLIPTokenizer
-import torch
-import torchvision.transforms as T
-from torchvision.transforms import InterpolationMode
+from transformers import AutoModel
+from transformers import CLIPImageProcessor, CLIPTokenizer
+
 HOME = os.path.expanduser("~")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
